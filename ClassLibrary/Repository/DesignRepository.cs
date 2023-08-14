@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ClassLibrary.Model;
+using Dapper;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+
+namespace ClassLibrary.Repository
+{
+    class DesignRepository
+    {
+        public readonly string conectionstring;
+
+        public DesignRepository()
+        {
+
+            conectionstring = @"Data source=DESKTOP-TKPKUBE\SQLEXPRESS;Initial catalog=SQL QUERIES;User Id=sa;Password=Anaiyaan@123";
+        }
+
+        public void Insert(DesignModel A)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(conectionstring);
+
+                con.Open();
+                con.Execute($"exec InsertDesignpage' '{A.FullName}',{A.Email_Address},'{A.Comments}'");
+
+                con.Close();
+
+            }
+            catch (SqlException ep)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+    }
+}
