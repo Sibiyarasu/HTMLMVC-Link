@@ -29,7 +29,7 @@ namespace ClassLibrary.Repository
                 SqlConnection con = new SqlConnection(conectionstring);
 
                 con.Open();
-                con.Execute($"exec InsertDesignpage' '{A.FullName}',{A.Email_Address},'{A.Comments}'");
+                con.Execute($"exec InsertDesign' '{A.FirstName}',{A.Lastname},'{A.Email}','{A.PhoneNumber}','{A.message}'");
 
                 con.Close();
 
