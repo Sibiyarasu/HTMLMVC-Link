@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibrary.Model;
+﻿using ClassLibrary.Model;
 using Dapper;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace ClassLibrary.Repository

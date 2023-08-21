@@ -11,55 +11,67 @@
     <link rel="stylesheet" href="~/css/site.css" />
 
 
+
+
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HTMLMVC_Link</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+    <!-- header section strats -->
+    <header class="header_section">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="index.html">
+                    <img src="~/images/logo.png" alt="" />
+                    <span>
+                        Brighton
+                    </span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Design" asp-action="About">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Design" asp-action="Contact">Contact</a>
-                        </li>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Design" asp-action="Index">Index</a>
-                        </li>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Design" asp-action="Program">Program</a>
-                        </li>
-                      
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - HTMLMVC_Link - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                        <ul class="navbar-nav  ">
+                            @*<li class="nav-item ">
+                                <a class="nav-link" href="index.html">
+                                    Home <span class="sr-only">(current)</span>
+                                </a>
+                            </li>*@
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-controller="design" asp-action="Index"> Home </a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-controller="design" asp-action="About"> About </a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-controller="design" asp-action="info"> Information </a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-controller="design" asp-action="Program"> Program </a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-controller="design" asp-action="Contact"> Contact </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
-    </footer>
+    </header>
+    <!-- end header section -->
+    @*<div class="container">
+        <main role="main" class="pb-3">*@
+            @RenderBody()
+        @*</main>
+    </div>*@
+
+    <section class="container-fluid footer_section">
+        <p>
+            &copy; 
+            <a href="https://html.design/"> HelloBrighton</a>
+        </p>
+    </section>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/animated-headline.js" asp-append-version="true"></script>

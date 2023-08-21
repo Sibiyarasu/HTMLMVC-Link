@@ -14,6 +14,10 @@ namespace HTMLMVC_Link.Controllers
         {
             return View();
         }
+        public ActionResult Home()
+        {
+            return View();
+        }
         public ActionResult About()
         {
             return View();
@@ -22,7 +26,14 @@ namespace HTMLMVC_Link.Controllers
         {
             return View();
         }
-        public ActionResult Prodram()
+
+        public ActionResult Info()
+        {
+            return View();
+        }
+
+
+        public ActionResult Program()
         {
             return View();
         }
