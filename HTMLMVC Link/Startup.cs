@@ -50,7 +50,7 @@ namespace HTMLMVC_Link
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Design}/{action=About}/{id?}");
+                    pattern: "{controller=Design}/{action=Contact}/{id?}");
             });
         }
     }
