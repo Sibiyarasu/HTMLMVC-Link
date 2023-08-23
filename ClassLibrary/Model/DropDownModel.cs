@@ -9,6 +9,9 @@ namespace ClassLibrary.Model
 {
   public   class DropDownModel
     {[Required]
+
+        public int ProductTypeId { get; set; }
+
         public string ProductType { get; set; }
     }
 }

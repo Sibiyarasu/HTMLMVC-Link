@@ -46,8 +46,100 @@ namespace ClassLibrary.Repository
             }
 
         }
+
+
+        public void InsertProduct(ProductModel model)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection(conectionstring);
+
+                con.Open();
+                con.Execute($"EXEC DBO.InsertProduct  '{model.Productid}','{model.ProductName}',{model.Quantity},'{model.Price}','{model.ProductCode}'");
+
+                con.Close();
+
+            }
+            catch (SqlException e)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public ProductModel SelectProductById(int Productid)
+
+        {
+
+
+
+
+            SqlConnection connection = new SqlConnection(conectionstring);
+            connection.Open();
+            var res = connection.QueryFirst<ProductModel>($"exec dbo.GetproductById {Productid}");
+            connection.Close();
+
+            return res;
+
+
+
+        }
+
+
+        public void UpdateProduct(ProductModel s)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(conectionstring);
+
+
+                con.Open();
+                con.Execute($"  exec dbo.UpdateProduct '{s.Productid}','{s.ProductName}','{s.Quantity}','{s.Price}','{s.ProductCode}' ");
+
+
+
+                con.Close();
+
+            }
+
+            catch (SqlException e)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        public ProductModel Deleteproduct(int productid)
+
+        {
+
+
+
+
+            SqlConnection connection = new SqlConnection(conectionstring);
+            connection.Open();
+            var res = connection.QueryFirst<ProductModel>($"exec dbo.DeleteProduct {productid}");
+
+            connection.Close();
+
+            return res;
+
+
+
+        }
+
     }
 }
 
-    
+
 

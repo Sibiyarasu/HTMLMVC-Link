@@ -23,7 +23,7 @@ namespace ClassLibrary.Repository
                 SqlConnection con = new SqlConnection(conectionstring);
 
                 con.Open();
-                con.Execute($"exec InsertDesign' '{A.FirstName}',{A.Lastname},'{A.Email}','{A.PhoneNumber}','{A.message}'");
+                con.Execute($"exec InsertDesign '{A.FirstName}','{A.Lastname}','{A.Email}','{A.PhoneNumber}','{A.message}'");
 
                 con.Close();
 
