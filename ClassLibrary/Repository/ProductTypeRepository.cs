@@ -30,7 +30,7 @@ namespace ClassLibrary.Repository
                     SqlConnection con = new SqlConnection(connectionString);
 
                     con.Open();
-                    con.Execute($" exec dbo.InsertProductType '{Type.ProductType}'");
+                    con.Execute($" exec dbo.InsertProductType '{Type.Type}'");
 
                     con.Close();
 
@@ -106,7 +106,7 @@ namespace ClassLibrary.Repository
                     SqlConnection con = new SqlConnection(connectionString);
 
                     con.Open();
-                    con.Execute($" 	exec dbo.UpdateProductType  '{Type.ProductTypeId}','{Type.ProductType}'");
+                    con.Execute($" 	exec dbo.UpdateProductType  '{Type.ProductTypeId}','{Type.Type}'");
                     con.Close();
                 }
                 catch (SqlException eu)

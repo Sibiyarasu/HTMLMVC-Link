@@ -30,7 +30,7 @@ namespace ClassLibrary.Repository
 
                 var connection = new SqlConnection(conectionstring);
                 connection.Open();
-                constrain = connection.Query<ProductModel>("  exec dbo.Getproduct ", conectionstring).ToList();
+                constrain = connection.Query<ProductModel>($"  exec dbo.Getproduct ", conectionstring).ToList();
                 connection.Close();
 
                 return constrain;
@@ -56,7 +56,7 @@ namespace ClassLibrary.Repository
                 SqlConnection con = new SqlConnection(conectionstring);
 
                 con.Open();
-                con.Execute($"EXEC DBO.InsertProduct  '{model.Productid}','{model.ProductName}',{model.Quantity},'{model.Price}','{model.ProductCode}'");
+                con.Execute($"EXEC DBO.InsertProduct '{model.ProductName}','{model.Type}','{model.Quantity}','{model.Price}','{model.ProductCode}'");
 
                 con.Close();
 
@@ -75,17 +75,26 @@ namespace ClassLibrary.Repository
         public ProductModel SelectProductById(int Productid)
 
         {
+            try
+            {
 
 
 
+                SqlConnection connection = new SqlConnection(conectionstring);
+                connection.Open();
+                var res = connection.QueryFirst<ProductModel>($"exec dbo.GetproductById {Productid}");
+                connection.Close();
 
-            SqlConnection connection = new SqlConnection(conectionstring);
-            connection.Open();
-            var res = connection.QueryFirst<ProductModel>($"exec dbo.GetproductById {Productid}");
-            connection.Close();
-
-            return res;
-
+                return res;
+            }
+            catch (SqlException e)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
 
         }
@@ -99,7 +108,7 @@ namespace ClassLibrary.Repository
 
 
                 con.Open();
-                con.Execute($"  exec dbo.UpdateProduct '{s.Productid}','{s.ProductName}','{s.Quantity}','{s.Price}','{s.ProductCode}' ");
+                con.Execute($"  exec dbo.UpdateProduct '{s.Productid}','{s.ProductName}','{s.Type}','{s.Quantity}','{s.Price}','{s.ProductCode}' ");
 
 
 
@@ -122,19 +131,28 @@ namespace ClassLibrary.Repository
         public ProductModel Deleteproduct(int productid)
 
         {
+            try
+            {
 
 
 
+                SqlConnection connection = new SqlConnection(conectionstring);
+                connection.Open();
+                var res = connection.QueryFirst<ProductModel>($"exec dbo.DeleteProduct {productid}");
 
-            SqlConnection connection = new SqlConnection(conectionstring);
-            connection.Open();
-            var res = connection.QueryFirst<ProductModel>($"exec dbo.DeleteProduct {productid}");
+                connection.Close();
 
-            connection.Close();
+                return res;
 
-            return res;
-
-
+            }
+            catch (SqlException e)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
 

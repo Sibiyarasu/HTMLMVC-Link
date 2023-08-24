@@ -28,7 +28,8 @@ namespace HTMLMVC_Link.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var result = obj1.SelectProductById(id);
+            return View("Details", result);
         }
 
         // GET: ProductController/Create
@@ -37,6 +38,7 @@ namespace HTMLMVC_Link.Controllers
 
             var model = new ProductModel();
             model.ProductType = obj2.GetProductType();
+
             return View("Insert", model);
            
         }
@@ -44,7 +46,7 @@ namespace HTMLMVC_Link.Controllers
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductModel StoreData)
+        public ActionResult Insert(ProductModel StoreData)
         {
             try
             {
@@ -59,8 +61,8 @@ namespace HTMLMVC_Link.Controllers
                     return View("Insert", new ProductModel());
 
                 }
-              /*  obj1.InsertProduct(StoreData);
-                return RedirectToAction(nameof(List));*/
+               obj1.InsertProduct(StoreData);
+                return RedirectToAction(nameof(List));
             }
             catch
             {
@@ -74,6 +76,7 @@ namespace HTMLMVC_Link.Controllers
         public ActionResult Edit(int Productid)
         {
             var result = obj1.SelectProductById(Productid);
+            result.ProductType = obj2.GetProductType();
             return View("UpdateProduct", result);
         }
 

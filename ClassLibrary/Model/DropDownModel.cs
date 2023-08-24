@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 namespace ClassLibrary.Model
 {
   public   class DropDownModel
-    {[Required]
+    { 
 
         public int ProductTypeId { get; set; }
 
-        public string ProductType { get; set; }
+        [Required]
+
+        public string Type { get; set; }
     }
 }

@@ -14,14 +14,13 @@ namespace ClassLibrary.Model
         {
             ProductType = new List<DropDownModel>();
         }
-        [Required]
         public int Productid { get; set; }
         [Required]
         public string ProductName { get; set; }
         [Required]
-        [Range(1,100)]
+        
         public string Type { get; set; }
-
+        [Range(1, 100)]
         public string Quantity { get; set; }
         [Required]
         public string Price { get; set; }

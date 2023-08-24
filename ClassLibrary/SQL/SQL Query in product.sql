@@ -9,7 +9,7 @@ ProductCode nvarchar(100)  unique not null
 
 select * from dbo.Product
 
-
+exec dbo.GetProductType
 
 create procedure Getproduct
 as
@@ -28,7 +28,7 @@ begin
 insert into dbo.Product (ProductName,Quantity,Price,ProductCode) values(@ProductName,@Quantity,@Price,@ProductCode)
 end
 
-exec InsertProduct 'Rice',2,1500,'R1'
+exec InsertProduct 'vada',10,14,'v1'
 
 
 Create or alter procedure UpdateProduct(@productId int,@ProductName nvarchar(200),@Quantity int,@Price int,@ProductCode  nvarchar(100))
@@ -47,7 +47,9 @@ Delete from dbo.Product where productId=@productId
 end
 
 exec dbo.DeleteProduct  5
-
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
 Create table ProductDropDown
 (
@@ -89,6 +91,15 @@ Delete from dbo.ProductDropDown where ProductTypeId=@ProductTypeId
 end
 
 exec dbo.DeleteProductType 1
+
+create or alter procedure GetproductTypeById(@productTypeid int)
+as
+
+begin
+select * from dbo.Product where productTypeid=@productTypeid
+end
+
+exec dbo.GetproductById 6
 
 
 
