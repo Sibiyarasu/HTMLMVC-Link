@@ -12,12 +12,15 @@ namespace HTMLMVC_Link.Controllers
 {
     public class ProductController : Controller
     {
-         public ProductRepository obj1;
+
+        public ProductRepository obj1;
         public ProductTypeRepository obj2;
         public ProductController()
         {
             obj1 = new ProductRepository();
             obj2 = new ProductTypeRepository();
+            
+
         }
         // GET: ProductController
         public ActionResult List()
@@ -55,17 +58,36 @@ namespace HTMLMVC_Link.Controllers
                 if (ModelState.IsValid)
                 {
 
+
                     obj1.InsertProduct(StoreData);
                     return RedirectToAction(nameof(List));
+
                 }
+
+
+                else if ()
+                {
+                    obj1.InsertProduct(StoreData);
+
+
+                }
+                else if ()
+
+                {
+
+                    return View("Insert", StoreData);
+
+                }
+
+
                 else
                 {
                     StoreData.Type = obj2.GetProductType();
                     return View("Insert", StoreData);
 
                 }
-              
-               
+
+                
             }
             catch
             {
@@ -106,7 +128,7 @@ namespace HTMLMVC_Link.Controllers
 
             var result = obj1.Deleteproduct(productid);
 
-            return RedirectToAction(nameof(List));
+            //return RedirectToAction(nameof(List));
             return View("Deleteproduct",result);
         }
 

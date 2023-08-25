@@ -15,6 +15,7 @@ namespace ClassLibrary.Repository
 
         public readonly string conectionstring;
 
+
         public ProductRepository()
         {
 
@@ -144,6 +145,31 @@ namespace ClassLibrary.Repository
 
                 return res;
 
+            }
+            catch (SqlException e)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public int IsExists(string ProductName)
+        {
+            try
+            {
+
+
+
+                SqlConnection connection = new SqlConnection(conectionstring);
+                connection.Open();
+                var res = connection.QueryFirst<int>($"exec isexists '{ProductName}'");
+                connection.Close();
+
+                return res;
             }
             catch (SqlException e)
             {
