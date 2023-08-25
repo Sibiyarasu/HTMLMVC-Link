@@ -4,8 +4,13 @@ namespace HTMLMVC_Link.Models
 {
     public class ErrorViewModel
     {
-        public string RequestId { get; set; }
+        public ErrorViewModel()
+        {
+            ErrorMessage = "Error Occured.";
+            CustomMessage = "Please Contact System Admin";
+        }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public string CustomMessage { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

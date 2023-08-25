@@ -14,6 +14,6 @@ namespace ClassLibrary.Model
 
         [Required]
 
-        public string Type { get; set; }
+        public string ProductType { get; set; }
     }
 }

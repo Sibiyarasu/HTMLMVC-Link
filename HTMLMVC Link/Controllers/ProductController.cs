@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
  using ClassLibrary.Model;
 using ClassLibrary.Repository;
+using HTMLMVC_Link.Models;
 
 namespace HTMLMVC_Link.Controllers
 {
@@ -26,18 +27,19 @@ namespace HTMLMVC_Link.Controllers
         }
 
         // GET: ProductController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int productid)
         {
-            var result = obj1.SelectProductById(id);
+            var result = obj1.SelectProductById(productid);
             return View("Details", result);
         }
+
 
         // GET: ProductController/Create
         public ActionResult Insert()
         {
 
             var model = new ProductModel();
-            model.ProductType = obj2.GetProductType();
+            model.Type = obj2.GetProductType();
 
             return View("Insert", model);
            
@@ -58,11 +60,12 @@ namespace HTMLMVC_Link.Controllers
                 }
                 else
                 {
-                    return View("Insert", new ProductModel());
+                    StoreData.Type = obj2.GetProductType();
+                    return View("Insert", StoreData);
 
                 }
-               obj1.InsertProduct(StoreData);
-                return RedirectToAction(nameof(List));
+              
+               
             }
             catch
             {
@@ -76,7 +79,7 @@ namespace HTMLMVC_Link.Controllers
         public ActionResult Edit(int Productid)
         {
             var result = obj1.SelectProductById(Productid);
-            result.ProductType = obj2.GetProductType();
+            result.Type = obj2.GetProductType();
             return View("UpdateProduct", result);
         }
 
@@ -91,9 +94,9 @@ namespace HTMLMVC_Link.Controllers
                 obj1.UpdateProduct(collection);
                 return RedirectToAction(nameof(List));
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                return View("Error", new ErrorViewModel { CustomMessage = "Error in Product Edit feature" , ErrorMessage = ex.Message });
             }
         }
 

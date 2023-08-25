@@ -56,7 +56,7 @@ namespace ClassLibrary.Repository
                 SqlConnection con = new SqlConnection(conectionstring);
 
                 con.Open();
-                con.Execute($"EXEC DBO.InsertProduct '{model.ProductName}','{model.Type}','{model.Quantity}','{model.Price}','{model.ProductCode}'");
+                con.Execute($"EXEC DBO.InsertProduct '{model.ProductName}','{model.ProductType}','{model.Quantity}','{model.Price}','{model.ProductCode}'");
 
                 con.Close();
 
@@ -108,7 +108,7 @@ namespace ClassLibrary.Repository
 
 
                 con.Open();
-                con.Execute($"  exec dbo.UpdateProduct '{s.Productid}','{s.ProductName}','{s.Type}','{s.Quantity}','{s.Price}','{s.ProductCode}' ");
+                con.Execute($"  exec dbo.UpdateProduct  '{s.Productid}','{s.ProductName}','{s.ProductType}','{s.Quantity}','{s.Price}','{s.ProductCode}' ");
 
 
 
