@@ -29,7 +29,7 @@ begin
 insert into dbo.Product (ProductName,ProductType,Quantity,Price,ProductCode) values(@ProductName,@productType,@Quantity,@Price,@ProductCode)
 end
 
-exec InsertProduct 'jam','snacks',10,14,'f1'
+exec InsertProduct 'juice','snacks',10,14,'k1'
 
 
 Create or alter procedure UpdateProduct(@productId int,@ProductName nvarchar(200),@productType nvarchar(200),@Quantity int,@Price int,@ProductCode  nvarchar(100))
@@ -47,7 +47,9 @@ begin
 Delete from dbo.Product where productId=@productId
 end
 
-exec dbo.DeleteProduct  5
+exec dbo.DeleteProduct  6
+exec dbo.Getproduct
+
 -------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------
@@ -105,3 +107,50 @@ exec dbo.GetproductById 6
 
 select p.ProductName,p.ProductCode,d.ProductType from dbo.Product p inner join dbo.ProductDropDown d on p.productId=d.ProductTypeId
 
+
+select * from Product
+
+SELECT DISTINCT ProductName FROM product;
+
+
+create or alter  procedure nameexists(@productName nvarchar(200))
+as
+
+begin 
+select  (ProductName) exists as name,ProductName from dbo.Product where ProductName like '%o%' group by ProductName
+
+end
+
+exec dbo.nameexists 'w'
+
+
+SELECT ProductName 
+FROM Product
+WHERE EXISTS 
+  (SELECT ProductName 
+   FROM Product
+   WHERE ProductName like'%j%');
+
+ --  SELECT ProductName FROM products WHERE ProductName = ?;
+
+  
+select count(ProductName), ProductName from dbo.Product where ProductName like ('%z%') group by ProductName
+ 
+
+
+ create or alter procedure isexists(@productname nvarchar (200))
+ as
+ begin
+  select count(ProductName)as ProductName from dbo.Product where ProductName =@productname 
+ -- end
+
+	--	print 'yes'
+ --else 
+ 
+	--	print 'no name '
+	end
+
+
+ exec isexists 'z'
+
+ exec dbo.Getproduct

@@ -13,26 +13,26 @@ namespace HTMLMVC_Link.Controllers
     public class ProductController : Controller
     {
 
-        public ProductRepository obj1;
-        public ProductTypeRepository obj2;
+        public ProductRepository prodObj;
+        public ProductTypeRepository typrObj;
         public ProductController()
         {
-            obj1 = new ProductRepository();
-            obj2 = new ProductTypeRepository();
-            
+            prodObj = new ProductRepository();
+            typrObj = new ProductTypeRepository();
+
 
         }
         // GET: ProductController
         public ActionResult List()
 
         {
-            return View("ProductList", obj1.SelectSP());
+            return View("ProductList", prodObj.SelectSP());
         }
 
         // GET: ProductController/Details/5
         public ActionResult Details(int productid)
         {
-            var result = obj1.SelectProductById(productid);
+            var result = prodObj.SelectProductById(productid);
             return View("Details", result);
         }
 
@@ -42,111 +42,127 @@ namespace HTMLMVC_Link.Controllers
         {
 
             var model = new ProductModel();
-            model.Type = obj2.GetProductType();
+            model.Type = typrObj.GetProductType();
 
             return View("Insert", model);
-           
+
         }
 
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Insert(ProductModel StoreData)
+        public ActionResult Insert(ProductModel storeData)
+        
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    if (prodObj.IsExists(storeData.ProductName))
+                    {
+                        ModelState.AddModelError("ProductName", "Product Name Already exists");
+                        storeData.Type = typrObj.GetProductType();
+                        return View("Insert", new ProductModel());
+                    }
 
-
-                    obj1.InsertProduct(StoreData);
+                    prodObj.InsertProduct(storeData);
                     return RedirectToAction(nameof(List));
-
                 }
-
-
-                else if ()
-                {
-                    obj1.InsertProduct(StoreData);
-
-
-                }
-                else if ()
-
-                {
-
-                    return View("Insert", StoreData);
-
-                }
-
-
                 else
                 {
-                    StoreData.Type = obj2.GetProductType();
-                    return View("Insert", StoreData);
-
+                    storeData.Type = typrObj.GetProductType();
+                    return View("Insert", storeData);
                 }
 
-                
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View("Error", new ErrorViewModel { CustomMessage = "Error in Product Edit feature", ErrorMessage = ex.Message });
             }
-          
 
         }
-
         // GET: ProductController/Edit/5
         public ActionResult Edit(int Productid)
         {
-            var result = obj1.SelectProductById(Productid);
-            result.Type = obj2.GetProductType();
-            return View("UpdateProduct", result);
-        }
-
-        // POST: ProductController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int Productid, ProductModel collection)
-        {
             try
             {
+               // if (ModelState.IsValid)
+               // {
+                    var result = prodObj.SelectProductById(Productid);
+                    result.Type = typrObj.GetProductType();
+                    return View("UpdateProduct", result);
+              //  }
+             //   else
+             //   {
+                    //  storeData.Type = typrObj.GetProductType();
+                    return View("Insert");
+               // }
+            }
+            catch (Exception ex)
+            {
+                return View("Error", new ErrorViewModel { CustomMessage = "Error in Product Edit feature", ErrorMessage = ex.Message });
+            }
+        }
+            // POST: ProductController/Edit/5
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Edit(int Productid, ProductModel collection)
+            {
+            try
+            {
+                if (ModelState.IsValid) {
+
+                    if (prodObj.UpdateNameCheck(collection.ProductName, collection.Productid))
+                    {
+                        ModelState.AddModelError("ProductName", "Product Name Already exists");
+                        collection.Type = typrObj.GetProductType();
+
+                        return View("Insert", collection);
+                    }
+                }
+                else
+
                 collection.Productid = Productid;
-                obj1.UpdateProduct(collection);
-                return RedirectToAction(nameof(List));
+                    prodObj.UpdateProduct(collection);
+                    return RedirectToAction(nameof(List));
+                }
+                catch (Exception ex)
+                {
+                    return View("Error", new ErrorViewModel { CustomMessage = "Error in Product Edit feature", ErrorMessage = ex.Message });
+                }
+            }
+
+            // GET: ProductController/Delete/5
+            public ActionResult Delete(int productid)
+            {
+            try
+            {
+                var result = prodObj.SelectProductById(productid);
+
+                //return RedirectToAction(nameof(List));
+                return View("Deleteproduct", result);
             }
             catch(Exception ex)
             {
-                return View("Error", new ErrorViewModel { CustomMessage = "Error in Product Edit feature" , ErrorMessage = ex.Message });
+                return View("Error", new ErrorViewModel { CustomMessage = "Error in Product Edit feature", ErrorMessage = ex.Message });
             }
         }
 
-        // GET: ProductController/Delete/5
-        public ActionResult Delete(int productid)
-        {
-
-            var result = obj1.Deleteproduct(productid);
-
-            //return RedirectToAction(nameof(List));
-            return View("Deleteproduct",result);
-        }
-
-        // POST: ProductController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Remove(int productid)
-        {
-            try
+            // POST: ProductController/Delete/5
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Remove(int productid)
             {
-                obj1.Deleteproduct(productid);
+                try
+                {
+                    prodObj.Deleteproduct(productid);
 
-                return RedirectToAction(nameof(List));
-            }
-            catch
-            {
-                return View();
+                    return RedirectToAction(nameof(List));
+                }
+                catch (Exception ex)
+                {
+                return View("Error", new ErrorViewModel { CustomMessage = "Error in Product Edit feature", ErrorMessage = ex.Message });
             }
         }
-    }
-}
+        }
+    } 

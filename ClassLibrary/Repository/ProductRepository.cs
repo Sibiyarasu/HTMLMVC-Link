@@ -157,7 +157,7 @@ namespace ClassLibrary.Repository
 
         }
 
-        public int IsExists(string ProductName)
+        public Boolean IsExists(string ProductName)
         {
             try
             {
@@ -166,7 +166,7 @@ namespace ClassLibrary.Repository
 
                 SqlConnection connection = new SqlConnection(conectionstring);
                 connection.Open();
-                var res = connection.QueryFirst<int>($"exec isexists '{ProductName}'");
+                var res = connection.QueryFirst<Boolean>($"exec isexists '{ProductName}'");
                 connection.Close();
 
                 return res;
@@ -181,7 +181,30 @@ namespace ClassLibrary.Repository
             }
 
         }
+        public Boolean UpdateNameCheck(string ProductName, int productId)
+        {
+            try
+            {
 
+
+
+                SqlConnection connection = new SqlConnection(conectionstring);
+                connection.Open();
+                var res = connection.QueryFirst<Boolean>($"exec ValidUpdate '{ProductName}',{productId}");
+                connection.Close();
+
+                return res;
+            }
+            catch (SqlException e)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }
 

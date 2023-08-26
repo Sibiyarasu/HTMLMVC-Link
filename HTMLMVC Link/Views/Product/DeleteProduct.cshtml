@@ -44,6 +44,8 @@
     </dl>
     
     <form asp-action="Remove">
+        <input asp-for="Productid" type="hidden" class="btn btn-danger" /> |
+
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="List">Back to List</a>
     </form>
