@@ -1,41 +1,14 @@
-﻿@model IEnumerable<ClassLibrary.Model.LoginModel>
+﻿@model ClassLibrary.Model.LoginModel
 
-@{
-    ViewData["Title"] = "LoginList";
-}
+<form asp-action="Login">
+    <div class="mb-3 mt-3">
+        <label for="email" class="form-label">UserName:</label>
+        <input type="text" class="form-control" id="UserName" placeholder="Enter username" name="UserName">
+    </div>
+    <div class="mb-3">
+        <label for="pwd" class="form-label">Password:</label>
+        <input type="password" class="form-control" id="Password" placeholder="Enter password" name="Password">
+    </div>
 
-<h1>LoginList</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

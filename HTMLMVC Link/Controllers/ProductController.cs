@@ -123,7 +123,9 @@ namespace HTMLMVC_Link.Controllers
                 else
 
                 collection.Productid = Productid;
-                    prodObj.UpdateProduct(collection);
+                collection.Type = typrObj.GetProductType();
+
+                prodObj.UpdateProduct(collection);
                     return RedirectToAction(nameof(List));
                 }
                 catch (Exception ex)
