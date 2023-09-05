@@ -108,26 +108,27 @@ namespace HTMLMVC_Link.Controllers
             [ValidateAntiForgeryToken]
             public ActionResult Edit(int Productid, ProductModel collection)
             {
-            try
-            {
-                if (ModelState.IsValid) {
-
-                    if (prodObj.UpdateNameCheck(collection.ProductName, collection.Productid))
+               try
+               {
+                    if (ModelState.IsValid)
                     {
+
+                        if (prodObj.UpdateNameCheck(collection.ProductName, collection.Productid))
+                        {
                         ModelState.AddModelError("ProductName", "Product Name Already exists");
                         collection.Type = typrObj.GetProductType();
-
                         return View("Insert", collection);
+                        }
+                    
                     }
-                }
-                else
+                     else
 
-                collection.Productid = Productid;
-                collection.Type = typrObj.GetProductType();
+                        collection.Productid = Productid;
+                        collection.Type = typrObj.GetProductType();
 
-                prodObj.UpdateProduct(collection);
-                    return RedirectToAction(nameof(List));
-                }
+                          prodObj.UpdateProduct(collection);
+                           return RedirectToAction(nameof(List));
+               }
                 catch (Exception ex)
                 {
                     return View("Error", new ErrorViewModel { CustomMessage = "Error in Product Edit feature", ErrorMessage = ex.Message });
