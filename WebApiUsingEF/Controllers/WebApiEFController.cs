@@ -22,7 +22,7 @@ namespace WebApiUsingEF.Controllers
             _EFObj = obj;
         }
         // GET: api/<WebApiEFController>
-        [HttpGet]
+        [HttpGet("getalldata")]
         public IEnumerable<EFModel> Get()
         {
             try
