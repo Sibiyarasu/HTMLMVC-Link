@@ -50,7 +50,7 @@ namespace HTMLMVC_Link
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Login}/{id?}");
+                    pattern: "{controller=MultipleView}/{action=index}/{id?}");
             });
         }
     }

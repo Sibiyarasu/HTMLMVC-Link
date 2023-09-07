@@ -36,7 +36,8 @@ namespace WebApiUsingEF.Controllers
             }
         }
 
-        // GET api/<WebApiEFController>/5
+        // GE
+        // T api/<WebApiEFController>/5
         [HttpGet("{Empid}")]
         public EFModel Get(int Empid)
         {
@@ -74,6 +75,7 @@ namespace WebApiUsingEF.Controllers
             {
                 value.Empid = empid;
                 _EFObj.SP_EFUpdate(value);
+
             }
             catch(Exception ex)
             {

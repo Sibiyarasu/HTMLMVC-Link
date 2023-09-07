@@ -1,0 +1,18 @@
+﻿@model ProductViewModel
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h4>Product Data Entry</h4>
+@*<hr />
+*@
+    <partial name="_createpartial" model="Model.Create" />
+
+
+<div class="row">
+    <partial name="_listpartial" model="Model.List" />
+</div>
+
+
+
