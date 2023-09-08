@@ -3,11 +3,11 @@
 <h4>ProductModel</h4>
 <hr />
 <div class="row">
-    <div class="col-md-2">
-        <form asp-action="create">
+    <div class="col-md-4">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" class="overflow-hidden">
-                <label asp-for="Productid" class="control-label"></label>s
+            <div class="form-group">
+                <label asp-for="Productid" class="control-label"></label>
                 <input asp-for="Productid" class="form-control" />
                 <span asp-validation-for="Productid" class="text-danger"></span>
             </div>
@@ -21,7 +21,7 @@
                 <select class="form-control" asp-for="ProductType" asp-items="@(new SelectList(Model.Type,"ProductType","ProductType"))">
                     <option>--Select ProductType--</option>
                 </select>
-                <span asp-validation-for="Type" class="text-danger"></span>
+                <span asp-validation-for="ProductType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
@@ -39,13 +39,13 @@
                 <span asp-validation-for="ProductCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-@*
+
 <div>
-    <a asp-action="List">Back to List</a>
+    <a asp-action="Index">Back to List</a>
 </div>
-*@
+

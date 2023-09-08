@@ -16,8 +16,8 @@ namespace ClassLibrary.Model
            Type = new List<DropDownModel>();
         }
         public int Productid { get; set; }
-        [Required(ErrorMessage = "Name is required.")]
-      //  [StringLength(7, ErrorMessage = "Name can't be longer than 7 characters.")]
+        [Required]
+  
         public string ProductName { get; set; }
         [Required]
         public string ProductType { get; set; }

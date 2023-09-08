@@ -80,7 +80,7 @@ namespace ClassLibrary.Repository
 
                     var connection = new SqlConnection(connectionString);
                     connection.Open();
-                    constrain = connection.Query<DropDownModel>($"exec dbo.GetProductType ").ToList();
+                    constrain = connection.Query<DropDownModel>($" exec dbo.GetProductType ").ToList();
                     connection.Close();
 
                     return constrain;

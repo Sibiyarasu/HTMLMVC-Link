@@ -12,5 +12,7 @@ namespace HTMLMVC_Link.Models
         public ProductModel  Create { get; set; }
 
         public List<ProductModel> List { get; set; }
+        public DropDownModel Type { get; set; }
+
     }
 }

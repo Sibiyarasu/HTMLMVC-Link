@@ -13,31 +13,41 @@ namespace HTMLMVC_Link.Controllers
     public class MultipleViewController : Controller
     {
         public ProductRepository prodObj;
+        public ProductTypeRepository typrObj;
 
 
         public MultipleViewController()
         {
             prodObj = new ProductRepository();
+            typrObj = new ProductTypeRepository();
         }
 
         // GET: MultipleViewController
-        public ActionResult Index()
+        public ActionResult List()
         {
             var model = new ProductViewModel();
-            model.Create = new ClassLibrary.Model.ProductModel();
+            model.Create = new ProductModel();
+            model.Create.Type = typrObj.GetProductType();
             model.List = prodObj.SelectSP();
-
+           
+          
 
             return View("view", model);
         }
 
         // GET: MultipleViewController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int Productid)
         {
-            return View();
+         var res=   prodObj.SelectProductById(Productid);
+            return View("Details",res);
         }
 
-    
+        public ActionResult Create()
+        {
+            var model = new ProductModel();
+            model.Type = typrObj.GetProductType();
+            return View("_createpartial",model);
+        }
 
         // POST: MultipleViewController/Create
         [HttpPost]
@@ -46,7 +56,9 @@ namespace HTMLMVC_Link.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                model.Type = typrObj.GetProductType();
+                prodObj.InsertProduct(model);
+                return RedirectToAction(nameof(List));
             }
             catch
             {
@@ -55,40 +67,56 @@ namespace HTMLMVC_Link.Controllers
         }
 
         // GET: MultipleViewController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int Productid)
         {
-            return View();
+            var res = prodObj.SelectProductById(Productid);
+
+             res.Type = typrObj.GetProductType();
+            return View("Edit",res);
         }
 
         // POST: MultipleViewController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int Productid, ProductModel collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
+                if (ModelState.IsValid)
+                {
+                    prodObj.UpdateProduct(collection);
+                    return RedirectToAction(nameof(List));
+
+                }
+
+
+            else
+                {
+                    return View("Edit", collection);
+                } }
             catch
             {
+
                 return View();
             }
         }
 
         // GET: MultipleViewController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int Productid)
         {
-            return View();
+          var res=  prodObj.SelectProductById(Productid);
+            return View("Delete",res);
         }
 
         // POST: MultipleViewController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Remove(int Productid)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                prodObj.Deleteproduct(Productid);
+                return RedirectToAction(nameof(List));
             }
             catch
             {

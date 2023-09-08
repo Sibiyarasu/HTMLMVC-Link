@@ -7,11 +7,21 @@
 <h4>Product Data Entry</h4>
 @*<hr />
 *@
-    <partial name="_createpartial" model="Model.Create" />
+<div class="size">
+
+    <div>
+        <table align="left">
+            <partial name="_createpartial" model="Model.Create" />
+        </table>
+    </div>
 
 
-<div class="row">
-    <partial name="_listpartial" model="Model.List" />
+
+    <div class="text-md-center">
+        <table align="right">
+            <partial name="_listpartial" model="Model.List" />
+            </table>
+</div>
 </div>
 
 
