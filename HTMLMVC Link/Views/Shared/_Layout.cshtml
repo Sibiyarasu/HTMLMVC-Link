@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="~/css/responsive.css" />
     <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/lib/select2/css/select2.min.css" rel="stylesheet" />
+
 
 
 
@@ -34,28 +37,28 @@
                     <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
                         <ul class="navbar-nav  ">
                             @*<li class="nav-item ">
-            <a class="nav-link" href="index.html">
-                Home <span class="sr-only">(current)</span>
-            </a>
-        </li>*@
-                            <li class="nav-item active">
-                                <a class="nav-link" asp-controller="design" asp-action="Index"> Home </a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" asp-controller="design" asp-action="About"> About </a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" asp-controller="design" asp-action="info"> Information </a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" asp-controller="design" asp-action="Program"> Program </a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" asp-controller="design" asp-action="Contact"> Contact </a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" asp-controller="Product" asp-action="List"> Products </a>
-                            </li>
+                                    <a class="nav-link" href="index.html">
+                                        Home <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>*@
+                            @* <li class="nav-item active">
+                                    <a class="nav-link" asp-controller="design" asp-action="Index"> Home </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-controller="design" asp-action="About"> About </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-controller="design" asp-action="info"> Information </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-controller="design" asp-action="Program"> Program </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-controller="design" asp-action="Contact"> Contact </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-controller="Product" asp-action="List"> Products </a>
+                                </li>*@
 
                         </ul>
                     </div>
@@ -64,25 +67,31 @@
         </div>
     </header>
     <!-- end header section -->
-    @*<div class="container">
-        <main role="main" class="pb-3">*@
-            @RenderBody()
-        @*</main>
-    </div>*@
 
-    <section class="container-fluid footer_section">
-        <p>@*
-            &copy; 
-*@            <a href="https://html.design/"> HelloBrighton</a>
+    @RenderBody()
+
+
+    <!--<section class="container-fluid footer_section">
+        <p>-->
+    @*
+        &copy;
+    *@
+    <!--<a href="https://html.design/"> HelloBrighton</a>
         </p>
-    </section>
+    </section>-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/animated-headline.js" asp-append-version="true"></script>
     <script src="~/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
     <script src="~/js/bootstrap.js" asp-append-version="true"></script>
     <script src="~/js/jquery-3.4.1.min.js" asp-append-version="true"></script>
     <script src="~/js/modernnizr.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/select2/js/select2.min.js"></script>
+
+
     <script src="~/js/site.js" asp-append-version="true"></script>
 
 

@@ -20,7 +20,9 @@ namespace HTMLMVC_Link.Controllers
 
         public IActionResult Index()
         {
-            return View();
+
+            TempData["data"] = "Welcome to my page";
+            return RedirectToAction("List","MultipleView");
         }
 
         public IActionResult Privacy()

@@ -4,9 +4,32 @@
     ViewData["Title"] = "View";
 }
 
+@section scripts {
+
+    <script>
+
+        $(document).ready(function () {
+
+            alert('pop');
+
+            $('#customerDatatable').dataTable({
+            });
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            alert('create');
+            $("#ProductType").select2();
+
+        });</script>
+
+}
+
+
 <h4>Product Data Entry</h4>
-@*<hr />
-*@
+
 <div class="size">
 
     <div>
@@ -20,9 +43,13 @@
     <div class="text-md-center">
         <table align="right">
             <partial name="_listpartial" model="Model.List" />
-            </table>
+        </table>
+    </div>
 </div>
-</div>
+
+
+
+
 
 
 

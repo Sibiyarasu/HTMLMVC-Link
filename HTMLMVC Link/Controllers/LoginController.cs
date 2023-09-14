@@ -33,7 +33,8 @@ namespace HTMLMVC_Link.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    return Redirect("/Product/List");
+                    //return Redirect("/Product/List");
+
 
                 }
                return Redirect("/Product/List");

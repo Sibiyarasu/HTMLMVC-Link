@@ -4,12 +4,28 @@
     ViewData["Title"] = "ProductList";
 }
 
+@section scripts {
+
+    <script>
+
+        $(document).ready(function () {
+
+            alert('pop');
+
+            $('#customerDatatable').dataTable({
+            });
+        });
+
+    </script>
+
+}
+
 <h1>ViListew</h1>
 
 <p>
     <a asp-action="Insert">Create New</a>
 </p>
-<table class="table">
+<table id="customerDatatable" class="table">
     <thead>
         <tr>
             <th>
@@ -34,33 +50,34 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Productid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductCode)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Productid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductCode)
+                </td>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { Productid = item.Productid }) |
-                @Html.ActionLink("Details", "Details", new { Productid = item.Productid }) |
-                @Html.ActionLink("Delete", "Delete", new { Productid = item.Productid })
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { Productid = item.Productid }) |
+                    @Html.ActionLink("Details", "Details", new { Productid = item.Productid }) |
+                    @Html.ActionLink("Delete", "Delete", new { Productid = item.Productid })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

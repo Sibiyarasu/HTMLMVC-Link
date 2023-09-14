@@ -29,10 +29,12 @@ namespace HTMLMVC_Link.Controllers
             model.Create = new ProductModel();
             model.Create.Type = typrObj.GetProductType();
             model.List = prodObj.SelectSP();
-           
-          
+            string data = TempData["data"] as string;
+            ViewBag.data = data;
 
-            return View("view", model);
+
+
+            return View("view",model);
         }
 
         // GET: MultipleViewController/Details/5
