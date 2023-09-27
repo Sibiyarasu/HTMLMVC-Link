@@ -13,12 +13,15 @@ namespace HTMLMVC_Link.Controllers
     public class ProductController : Controller
     {
 
-        public ProductRepository prodObj;
-        public ProductTypeRepository typrObj;
-        public ProductController()
+        public ProductRepository _prodObj;
+        public ProductTypeRepository _typrObj;
+        public ProductController(ProductRepository prodobj, ProductTypeRepository typrObj)
         {
-            prodObj = new ProductRepository();
-            typrObj = new ProductTypeRepository();
+            /* prodObj = new ProductRepository();
+             typrObj = new ProductTypeRepository();*/
+
+            _prodObj = prodobj;
+            _typrObj = typrObj;
 
 
         }
@@ -26,13 +29,13 @@ namespace HTMLMVC_Link.Controllers
         public ActionResult List()
 
         {
-            return View("ProductList", prodObj.SelectSP());
+            return View("ProductList", _prodObj.SelectSP());
         }
 
         // GET: ProductController/Details/5
         public ActionResult Details(int productid)
         {
-            var result = prodObj.SelectProductById(productid);
+            var result = _prodObj.SelectProductById(productid);
             return View("Details", result);
         }
 
@@ -42,7 +45,7 @@ namespace HTMLMVC_Link.Controllers
         {
 
             var model = new ProductModel();
-            model.Type = typrObj.GetProductType();
+            model.Type = _typrObj.GetProductType();
 
             return View("Insert", model);
 
@@ -58,19 +61,19 @@ namespace HTMLMVC_Link.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (prodObj.IsExists(storeData.ProductName))
+                    if (_prodObj.IsExists(storeData.ProductName))
                     {
                         ModelState.AddModelError("ProductName", "Product Name Already exists");
-                        storeData.Type = typrObj.GetProductType();
+                        storeData.Type = _typrObj.GetProductType();
                         return View("Insert", new ProductModel());
                     }
 
-                    prodObj.InsertProduct(storeData);
+                    _prodObj.InsertProduct(storeData);
                     return RedirectToAction(nameof(List));
                 }
                 else
                 {
-                    storeData.Type = typrObj.GetProductType();
+                    storeData.Type = _typrObj.GetProductType();
                     return View("Insert", storeData);
                 }
 
@@ -88,8 +91,8 @@ namespace HTMLMVC_Link.Controllers
             {
                // if (ModelState.IsValid)
                // {
-                    var result = prodObj.SelectProductById(Productid);
-                    result.Type = typrObj.GetProductType();
+                    var result = _prodObj.SelectProductById(Productid);
+                    result.Type = _typrObj.GetProductType();
                     return View("UpdateProduct", result);
               //  }
              //   else
@@ -113,10 +116,10 @@ namespace HTMLMVC_Link.Controllers
                     if (ModelState.IsValid)
                     {
 
-                        if (prodObj.UpdateNameCheck(collection.ProductName, collection.Productid))
+                        if (_prodObj.UpdateNameCheck(collection.ProductName, collection.Productid))
                         {
                         ModelState.AddModelError("ProductName", "Product Name Already exists");
-                        collection.Type = typrObj.GetProductType();
+                        collection.Type = _typrObj.GetProductType();
                         return View("Insert", collection);
                         }
                     
@@ -124,9 +127,9 @@ namespace HTMLMVC_Link.Controllers
                      else
 
                         collection.Productid = Productid;
-                        collection.Type = typrObj.GetProductType();
+                        collection.Type = _typrObj.GetProductType();
 
-                          prodObj.UpdateProduct(collection);
+                          _prodObj.UpdateProduct(collection);
                            return RedirectToAction(nameof(List));
                }
                 catch (Exception ex)
@@ -140,7 +143,7 @@ namespace HTMLMVC_Link.Controllers
             {
             try
             {
-                var result = prodObj.SelectProductById(productid);
+                var result = _prodObj.SelectProductById(productid);
 
                 //return RedirectToAction(nameof(List));
                 return View("Deleteproduct", result);
@@ -158,7 +161,7 @@ namespace HTMLMVC_Link.Controllers
             {
                 try
                 {
-                    prodObj.Deleteproduct(productid);
+                    _prodObj.Deleteproduct(productid);
 
                     return RedirectToAction(nameof(List));
                 }
